@@ -214,6 +214,8 @@ comics … ou alors entrées, plat principal, desserts dans un custom types « n
 
 ## Exercices et mise en application
 
-1. Changer le titre du site, son slogan et la langue
-2. Création d'un article
-3. Création d'une page
+1. Choisir un thème pour le blog
+2. Changer le titre du site, son slogan et le logo
+3. Création d'un article
+4. Création d'une page
+5. Création de catégories et sous-catégories
