@@ -68,9 +68,9 @@ Sur Local, Wordpress est installé d'office lors de la création d'un nouveau si
  pour qu'il pointe vers le dossier `Sites`
 ![modification du root folder dans MAMP](../assets/mamp-rootfolder.png)
 7. Créér la base de données en accédant à l'url `http://localhost/phpMyAdmin` (pour Windows et Wamp) ou `http://localhost:8888/phpMyAdmin` 
-(pour Mac et Wamp)
+(pour Mac et Mamp)
 ![création de la base de données](../assets/phpmyadmin-creation.png)
-7. Accéder à l'url du site local `http://localhost/test` (pour Windows et Mamp) ou `http://localhost:8888/text` 
+7. Accéder à l'url du site local `http://localhost/test` (pour Windows et Wamp) ou `http://localhost:8888/text` (pour Mac et Mamp)
 pour lancer à l'installation Wordpress
 8. L'installeur Wordpress va vous demander vos identifiants et mots de passe de base de données. Vous pouvez les retrouver sur la page 
 de démarrage MAMP
@@ -214,8 +214,8 @@ comics … ou alors entrées, plat principal, desserts dans un custom types « n
 
 ## Exercices et mise en application
 
-1. Choisir un thème pour le blog
+1. Choisir un sujet pour le blog
 2. Changer le titre du site, son slogan et le logo
-3. Création d'un article
-4. Création d'une page
-5. Création de catégories et sous-catégories
+3. Création de plusieurs articles
+4. Création de plusieurs pages
+5. Création de catégories et sous-catégories pour organiser vos articles
