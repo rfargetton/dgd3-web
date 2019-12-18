@@ -26,9 +26,9 @@ On retrouve ce genre de formules chez les hébergeurs suivant :
 ## Migrer le site local avec le plugin Duplicator
 
 Pour effectuer une migration du site Wordpress avec Duplicator, nous aurons besoin des outils suivant :
-- le plugin wordpress [Duplicator](https://wordpress.org/plugins/duplicator/)
-- un logiciel de transfert FTP tel que [Filezilla](https://filezilla-project.org/)
-- une formule d'hébergement avec une base de données installées (penser à bien conserver les adresses, id et mot de passe de la base de donnée). [Procédure pour OVH](https://docs.ovh.com/fr/hosting/creer-base-de-donnees/)
+- le plugin wordpress [Duplicator](https://wordpress.org/plugins/duplicator/).
+- un logiciel de transfert FTP tel que [Filezilla](https://filezilla-project.org/) ou [Cyberduck](https://cyberduck.io/).
+- une formule d'hébergement avec une base de données installée (penser à bien conserver les adresses, id et mot de passe de la base de donnée). [Procédure pour OVH](https://docs.ovh.com/fr/hosting/creer-base-de-donnees/).
 
 ### Créer le paquet d'export sur le site local
 
@@ -61,4 +61,27 @@ Cliquer sur suivant pour accéder à la connexion de base de données. C'est là
 Une fois la base de données connectée, le site va s'installer et vous pourrez retrouver votre site en ligne, identique à celui que vous aviez en local.
 
 ## Migrer le site local de façon manuelle
+
+Si jamais la marche à suivre avec Duplicator n'aboutit pas au résultat escompté, il faut suivre les étapes suivantes :
+
+1. Exporter la base de donnée locale et l'importer sur le site Wordpress en ligne (via l'interface d'administration MySql)
+2. Modifier le fichier `wp-config.php` pour y insérer les infos (adresse, id et mdp) de la base de données de l'hébergeur.
+1. Déplacer l'ensemble des fichiers du site local sur le serveur, ainsi que le fichier `wp-config` que vous avez modifié.
+3. Mettre à jour les urls du nouveau site (l'ancienne adresse du site local est encore présente dans la base de données)
+
+La démarche est détaillée dans les articles suivant:
+- https://wpmarmite.com/migrer-wordpress-manuellement/
+- https://wpformation.com/comment-migrer-wordpress-local-vers-hebergeur/
+
+## Passer le site en https (connexion securisée)
+
+1. Déménager votre site de HTTP vers HTTPS. Pour ce faire, il faut simplement se rendre dans l'interface d'administration et accéder à Réglages > Général et changer l'url du site en HTTPS.
+2. Éffectuer une redirection en insérant le code suivant dans le fichier .htaccess à la base du dossier site :
+```
+RewriteEngine on
+RewriteCond% {HTTP_HOST} ^ votresite.com [NC, OR]
+RewriteCond% {HTTP_HOST} ^ www.votresite.com [NC]
+(*). RewriteRule ^ $ https: //www.votresite.com/$1 [L, R = 301, NC]
+```
+3. Forcer le HTTPS pour les urls canoniques avec le plugin Yoast SEO, en accédant à SEO > Permaliens.
 
