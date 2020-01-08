@@ -1,11 +1,13 @@
 # Mettre en ligne son site Wordpress
 
+![Web-Hosting](../assets/web-hosting.jpg)
+
 Maintenant que le site Wordpress commence à prendre forme, nous allons nous pencher sur la question de la migration et de la mise en ligne de ce dernier.
 Du choix de l'hébergeur jusqu'au passage en HTTPS en passant par l'exportation du contenu du site, tous les aspects de cette ultime étape seront abordés.
 
-## Choisir un hébérgeur
+## Choisir un hébergeur
 
-Les hébergeurs sont légion et ultimement le choix d'une formule d'hébergement est souvent une histoire de préfèrences ou d'habitudes.
+Les hébergeurs sont légion et ultimement le choix d'une formule d'hébergement est souvent une histoire de préférences ou d'habitudes.
 Cependant, pour qu'un site Wordpress puisse être mis en ligne, la formule d'hébergement que vous choisirez doit proposer :
 
 - Une base de données MySQL
@@ -13,8 +15,8 @@ Cependant, pour qu'un site Wordpress puisse être mis en ligne, la formule d'hé
 - 100 Mo d'espace stockage minmum
 - Un accès FTP pour téléverser les fichiers sur le serveur
 
-Chez la plupart des hébergeurs 'sérieux', on retrouve ces configuration dans des formules d'hébergement mutualisé assez abordables.
-La formule Perso de OVH, par exemple, propose ces configurations pour 2,99 euros/mois avec une possibilité d'installer Wordpress en quelques clics via l'interface de gestion du service.
+Chez la plupart des hébergeurs 'sérieux', on retrouve ces configurations dans des formules d'hébergement mutualisé assez abordables.
+La formule Perso de OVH, par exemple, propose ces configurations pour 2,99€/mois avec une possibilité d'installer Wordpress en quelques clics via l'interface de gestion du service.
 
 On retrouve ce genre de formules chez les hébergeurs suivant :
 - [OVH](https://www.ovh.com/fr/web/)
@@ -28,18 +30,33 @@ On retrouve ce genre de formules chez les hébergeurs suivant :
 Pour effectuer une migration du site Wordpress avec Duplicator, nous aurons besoin des outils suivant :
 - le plugin wordpress [Duplicator](https://wordpress.org/plugins/duplicator/).
 - un logiciel de transfert FTP tel que [Filezilla](https://filezilla-project.org/) ou [Cyberduck](https://cyberduck.io/).
-- une formule d'hébergement avec une base de données installée (penser à bien conserver les adresses, id et mot de passe de la base de donnée). [Procédure pour OVH](https://docs.ovh.com/fr/hosting/creer-base-de-donnees/).
+- une formule d'hébergement avec une base de données installée (penser à bien conserver les adresses, id et mot de passe de la base de donnée).
+ [Cliquez ici](https://docs.ovh.com/fr/hosting/creer-base-de-donnees/) pour découvrir comment créer une base données sur OVH.
 
 ### Créer le paquet d'export sur le site local
 
 Une fois le plugin installé, vous pouvez accéder au configurations dans l'onglet 'Duplicator' dans la barre latérale de l'interface d'administration.
 C'est ici que vous allez pouvoir créer ce qu'on appelle le paquet, c'est-à-dire un ensemble de fichiers d'exports de votre site Wordpress, en cliquant sur 'Create New'.
 
+![Duplicator-create](../assets/duplicator-create.png)
+
 La fenêtre de configuration offre de nombreuses options à étudier. Pour un export complet, on peut simplement cliquer sur suivant pour passer à l'étape de Scan.
+
+![Dupliactor-setup](../assets/duplicator-setup.png)
+
+**IMPORTANT!** Pour ceux qui utilisent la version 5 (beta) de Local by Flywheel, penser à décocher les packages de Duplicator dans les paramètres d'export
+de la base de données. Leur présence pourrait faire planter le transfert de base de données.
+
+![Duplicator-basededonnées](../assets/duplicator-dbsetup.png)
+
 Si le résultat du scan est positif, on clique sur Build pour lancer la création du paquet d'export. Si certains indicateurs sont rouges ou affichent des alertes,
 un message d'information indique ce qui peut être fait pour améliorer la qualité de l'export.
 
+![Duplicator-scan](../assets/duplicator-scan.png)
+
 Une fois le paquet generé, il faut télécharger deux fichiers : `installer.php` et l'archive zippé des contenus du site.
+
+![Duplicator-build](../assets/duplicator-build.png)
 
 ### Déposer le contenu du paquet sur le serveur en ligne
 
@@ -49,6 +66,10 @@ une connexion FTP, vous en aurez besoin lors de la connection à votre serveur.
 D'avantages d'informations sur l'accès FTP avec OVH ici : https://www.ovh.com/fr/hebergement-web/ftp.xml
 
 Une fois connecté au serveur, déposer le fichier `installer.php` ainsi que l'archive du site dans le dossier de votre choix. 
+
+![Package Transfer](../assets/transfert-package.png)
+
+
 Pour une installation sur votre domaine principale (www.romaricfargetton.fr par exemple), déposer simplement les fichiers dans le dossier `www` de votre serveur.
 
 ### Lancer l'installation du paquet
@@ -56,8 +77,17 @@ Pour une installation sur votre domaine principale (www.romaricfargetton.fr par 
 Pour lancer l'installation du paquet, il faut simplememt accéder a l'url de votre site en ajoutant `installer.php` ensuite.
 Dans notre exemple : `htps://www.romaricfargetton.fr/installer.php`. Une fois sur cet url, un processus d'installation devrait se lancer.
 
+![Package Install](../assets/package-install.png)
+
 Il n'y a pas grand chose à faire sur le premier panneau 'Deploy' à part s'assurer que tout est en ordre.
 Cliquer sur suivant pour accéder à la connexion de base de données. C'est là que vous devrez insérer les infos (adresse, id et mdp) obtenues lors de la création de la base de données.
+
+![Duplicator Database Connection](../assets/duplicator-dbconnect.png)
+
+Sur OVH, vous pouvez retrouver ces informations dans 'Hébérgement' et en cliquant sur l'onglet 'Bases de données'.
+
+![OVH Databse Informations](../assets/ovh-database.png)
+
 Une fois la base de données connectée, le site va s'installer et vous pourrez retrouver votre site en ligne, identique à celui que vous aviez en local.
 
 ## Migrer le site local de façon manuelle
@@ -73,10 +103,10 @@ La démarche est détaillée dans les articles suivant:
 - https://wpmarmite.com/migrer-wordpress-manuellement/
 - https://wpformation.com/comment-migrer-wordpress-local-vers-hebergeur/
 
-## Passer le site en https (connexion securisée)
+## Passer le site en https (connexion sécurisée)
 
 1. Déménager votre site de HTTP vers HTTPS. Pour ce faire, il faut simplement se rendre dans l'interface d'administration et accéder à Réglages > Général et changer l'url du site en HTTPS.
-2. Éffectuer une redirection en insérant le code suivant dans le fichier .htaccess à la base du dossier site :
+2. Effectuer une redirection en insérant le code suivant dans le fichier .htaccess à la base du dossier site :
 ```
 RewriteEngine on
 RewriteCond% {HTTP_HOST} ^ votresite.com [NC, OR]
